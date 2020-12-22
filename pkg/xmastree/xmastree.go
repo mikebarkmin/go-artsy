@@ -22,17 +22,22 @@ func (xt *xmastree) tree(startx float64, starty float64, length float64, rotatio
 	c.DrawLine(startx, starty, endx, endy)
 	c.SetLineWidth(lineWidth)
 	// make gradient darker
-	gradientColor1 := math.Max((float64(xt.height)-starty)/float64(xt.height)-0.2, 0)
-	gradientColor2 := math.Max((float64(xt.width)-startx)/float64(xt.width)-0.2, 0)
+	gradientColor1 := math.Max((float64(xt.height)-starty)/float64(xt.height)-(0.4*rand.Float64()+0.1), 0)
+	gradientColor2 := math.Max((float64(xt.width)-startx)/float64(xt.width)-(0.4*rand.Float64()+0.1), 0)
 	c.SetRGB(gradientColor1, 0.5, gradientColor2)
 	c.Stroke()
 
 	if length > 5 {
-		newLineWidth := math.Max(lineWidth-0.5, 2)
+		// newLineWidth := math.Max(lineWidth-0.2, 2) // no variance
+		newLineWidth := math.Max(lineWidth-(rand.Float64()+0.2), 2)
 		newLength := length / 1.75
-		newLengthCenter := length - 2
-		xt.tree(endx, endy, newLength, 50+rotation, newLineWidth)
-		xt.tree(endx, endy, newLength, -50+rotation, newLineWidth)
+		newLengthCenter := length - 2.5
+		// angle1 := 50 // no variance
+		// angle2 := 50
+		angle1 := rand.Float64()*14 - 7 + 50
+		angle2 := rand.Float64()*14 - 7 + 50
+		xt.tree(endx, endy, newLength, angle1+rotation, newLineWidth)
+		xt.tree(endx, endy, newLength, -angle2+rotation, newLineWidth)
 		xt.tree(endx, endy, newLengthCenter, 0+rotation, newLineWidth)
 	}
 }
@@ -67,7 +72,7 @@ func (xt *xmastree) Render(path string) {
 
 	xt.background()
 	xt.stars(50)
-	xt.tree(float64(xt.width)/2.0, float64(xt.height), 80, -90, 6)
+	xt.tree(float64(xt.width)/2.0, float64(xt.height), 80, -90, 8)
 	xt.stars(20)
 
 	fmt.Println("Saving")

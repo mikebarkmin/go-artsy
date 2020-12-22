@@ -5,7 +5,7 @@ import (
 )
 
 func main() {
-	art, err := xmastree.New(1200, 1700)
+	art, err := xmastree.New(1500, 1500)
 	if err != nil {
 		panic(err)
 	}
