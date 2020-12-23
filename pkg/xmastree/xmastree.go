@@ -7,12 +7,13 @@ import (
 	"math/rand"
 
 	"github.com/fogleman/gg"
+	"github.com/mikebarkmin/go-artsy/pkg/art"
 )
 
 type xmastree struct {
 	width   float64
 	height  float64
-	context gg.Context
+	context art.Context
 }
 
 func (xt *xmastree) tree(startx float64, starty float64, length float64, rotation float64, lineWidth float64) {
@@ -65,7 +66,7 @@ func (xt *xmastree) background() {
 	c.Fill()
 }
 
-func (xt *xmastree) Render(path string) {
+func (xt *xmastree) Render() error {
 	fmt.Println("Rendering")
 	c := xt.context
 	c.Clear()
@@ -76,17 +77,11 @@ func (xt *xmastree) Render(path string) {
 	xt.stars(20)
 
 	fmt.Println("Saving")
-	c.SavePNG(fmt.Sprintf("%s.png", path))
+	return c.Render("xmastree")
 }
 
-func New(width float64, height float64) (*xmastree, error) {
-	if width < 100 {
-		return nil, fmt.Errorf("width of %d is under the minimum of 100", width)
-	}
-	if height < 100 {
-		return nil, fmt.Errorf("height of %d is under the minimum of 100", height)
-	}
-	c := gg.NewContext(int(width), int(height))
-	x := &xmastree{width: width, height: height, context: *c}
-	return x, nil
+func New(width int, height int) *xmastree {
+	c := art.NewContext(width, height)
+	x := &xmastree{width: float64(c.Width()), height: float64(c.Height()), context: *c}
+	return x
 }

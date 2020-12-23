@@ -1,14 +1,10 @@
 package main
 
 import (
-	"github.com/mikebarkmin/go-artsy/pkg/xmastree"
+	"github.com/mikebarkmin/go-artsy/pkg/schotter"
 )
 
 func main() {
-	art, err := xmastree.New(1500, 1500)
-	if err != nil {
-		panic(err)
-	}
-
-	art.Render("out/xmastree")
+	art := schotter.New(1500, 1500)
+	art.Render()
 }
