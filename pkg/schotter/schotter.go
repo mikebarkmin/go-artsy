@@ -27,7 +27,7 @@ func (s *schotter) Render() error {
 	for r := 0.0; r < rows; r++ {
 		randsum += (r * randstep)
 		for c := 0.0; c < columns; c++ {
-			randval := s.RandFloat64(-randsum, randsum)
+			randval := art.RandFloat64(-randsum, randsum)
 			x := float64(c) * size
 			y := float64(r) * size
 			x = padding*size + x + randval*dampen

@@ -1,3 +1,6 @@
+# github.com/aquilax/go-perlin v1.0.0
+## explicit
+github.com/aquilax/go-perlin
 # github.com/fogleman/gg v1.3.0
 ## explicit
 github.com/fogleman/gg
@@ -5,6 +8,9 @@ github.com/fogleman/gg
 ## explicit
 github.com/golang/freetype/raster
 github.com/golang/freetype/truetype
+# github.com/lucasb-eyer/go-colorful v1.0.3
+## explicit
+github.com/lucasb-eyer/go-colorful
 # golang.org/x/image v0.0.0-20201208152932-35266b937fa6
 ## explicit
 golang.org/x/image/draw

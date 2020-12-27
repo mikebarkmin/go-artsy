@@ -20,7 +20,11 @@ func (xt *xmastree) tree(startx float64, starty float64, length float64, rotatio
 	c := xt.context
 	endx := startx + length*math.Cos(gg.Radians(rotation))
 	endy := starty + length*math.Sin(gg.Radians(rotation))
-	c.DrawLine(startx, starty, endx, endy)
+
+	p1 := art.NewPoint(startx, starty)
+	p2 := art.NewPoint(endx, endy)
+	l := art.NewLine(p1, p2)
+	c.DrawLine(l)
 	c.SetLineWidth(lineWidth)
 	// make gradient darker
 	gradientColor1 := math.Max((float64(xt.height)-starty)/float64(xt.height)-(0.4*rand.Float64()+0.1), 0)
@@ -71,10 +75,10 @@ func (xt *xmastree) Render() error {
 	c := xt.context
 	c.Clear()
 
-	xt.background()
-	xt.stars(50)
+	// xt.background()
+	// xt.stars(50)
 	xt.tree(float64(xt.width)/2.0, float64(xt.height), 80, -90, 8)
-	xt.stars(20)
+	// xt.stars(20)
 
 	fmt.Println("Saving")
 	return c.Render("xmastree")
