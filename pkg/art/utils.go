@@ -9,6 +9,11 @@ func RandFloat64(min float64, max float64) float64 {
 	return r
 }
 
+func RandInt(min int, max int) int {
+	r := rand.Int()*(max-min) + min
+	return r
+}
+
 func HaltonSequence(index int, base int) float64 {
 	f := 1.0
 	r := 0.0

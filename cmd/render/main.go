@@ -1,8 +1,8 @@
 package main
 
 import (
+	"github.com/mikebarkmin/go-artsy/internal/natural"
 	"github.com/mikebarkmin/go-artsy/pkg/art"
-	"github.com/mikebarkmin/go-artsy/pkg/natural"
 )
 
 func main() {

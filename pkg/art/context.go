@@ -84,6 +84,14 @@ func (c *Context) SetSeed(seed int64) {
 	rand.Seed(seed)
 }
 
+func (c *Context) Width64() float64 {
+	return float64(c.Width())
+}
+
+func (c *Context) Height64() float64 {
+	return float64(c.Height())
+}
+
 func (c *Context) GenSeed() {
 	var b [8]byte
 	_, err := crypto_rand.Read(b[:])
